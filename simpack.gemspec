@@ -9,13 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["John Ochs"]
   spec.email         = ["johnochs@me.com"]
 
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com' to prevent pushes to rubygems.org, or delete to allow pushes to any server."
-  end
-
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Simpack is your go-to gem for your simulation needs in Ruby. At its heart, Simpack is a linear congruential generator (LCG) which can then be used to generate random samples from a number of statistical distributions.}
+  spec.description   = %q{A solution for all your simulation needs!}
+  spec.homepage      = "https://github.com/johnochs/simpack"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
