@@ -1,4 +1,6 @@
 # Simpack
+[![Code Climate](https://codeclimate.com/github/johnochs/simpack/badges/gpa.svg)](https://codeclimate.com/github/johnochs/simpack)
+[![Test Coverage](https://codeclimate.com/github/johnochs/simpack/badges/coverage.svg)](https://codeclimate.com/github/johnochs/simpack)
 
 Simpack is your go-to gem for your simulation needs in Ruby.  At its heart, Simpack is a linear congruential generator (LCG) which can then be used to generate random samples from a number of statistical distributions.
 
