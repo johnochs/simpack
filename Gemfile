@@ -2,4 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem "codeclimate-test-reporter", group: :test
+group :test do
+  gem "codeclimate-test-reporter"
+  gem 'rake', '~> 10.4.2'
+end
