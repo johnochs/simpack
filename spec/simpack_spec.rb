@@ -10,7 +10,7 @@ describe Simpack do
 
   end
 
-  describe 'LCG' do
+  describe 'Simpack::LCG' do
 
     context 'when initialized' do
 
@@ -107,6 +107,69 @@ describe Simpack do
 
           expect(test_statistics.count { |i| i < chi_squared_quantile }).to be >= 95
         end
+      end
+    end
+  end
+
+  describe 'Simpack::Distribution' do
+
+    describe 'Uniform' do
+
+      it 'passes this test' do
+        expect { Simpack::Distribution::Uniform.new(0, 10).cdf(5) }.not_to raise_error
+      end
+
+      context 'when initialized' do
+
+        it 'takes arguments a & b describing the minimum and maximum values of its support' do
+          expect { Simpack::Distribution::Uniform.new(0, 5) }.not_to raise_error
+          expect { Simpack::Distribution::Uniform.new }.to raise_error
+        end
+
+        it 'raises an error if a > b' do
+          expect { Simpack::Distribution::Uniform.new(3,2) }.to raise_error('Invalid support parameters')
+        end
+
+      end
+
+      describe '#cdf' do
+
+        subject(:ud) { Simpack::Distribution::Uniform.new(0,10) }
+
+        it 'takes a integer or a float argument' do
+          expect(ud.cdf(4)).to eq(ud.cdf(4.0))
+        end
+
+        it 'returns a float' do
+          expect(ud.cdf(5)).to be_kind_of(Float)
+        end
+
+        it 'raises an error with an improper argument' do
+          expect { ud.cdf('Whaaaaa???') }.to raise_error
+        end
+
+        it 'returns integer 1 for arguments >= its support' do
+          expect (ud.cdf(10)).to eq(1)
+          expect (ud.cdf(10)).to be_kind_of(Integer)
+          expect (ud.cdf(100)).to eq(1)
+          expect (ud.cdf(100)).to be_kind_of(Integer)
+        end
+
+        it 'returns integer 0 for arguments <= its support' do
+          expect (ud.cdf(0)).to eq(0)
+          expect (ud.cdf(0)).to be_kind_of(Integer)
+          expect (ud.cdf(-100)).to eq(0)
+          expect (ud.cdf(-100)).to be_kind_of(Integer)
+        end
+
+      end
+
+      describe '#somemethod' do
+
+        it 'exists' do
+          expect { Simpack::Distribution::Uniform.new(0,5).somemethod }.not_to raise_error
+        end
+
       end
 
     end
