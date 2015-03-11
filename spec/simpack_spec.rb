@@ -136,7 +136,7 @@ describe Simpack do
 
         subject(:ud) { Simpack::Distribution::Uniform.new(0,10) }
 
-        it 'takes a integer or a float argument' do
+        it 'takes an integer or a float argument' do
           expect(ud.cdf(4)).to eq(ud.cdf(4.0))
         end
 
@@ -145,29 +145,52 @@ describe Simpack do
         end
 
         it 'raises an error with an improper argument' do
-          expect { ud.cdf('Whaaaaa???') }.to raise_error
+          expect { ud.cdf('Whaaaaa???') }.to raise_error(ArgumentError)
         end
 
         it 'returns integer 1 for arguments >= its support' do
-          expect (ud.cdf(10)).to eq(1)
-          expect (ud.cdf(10)).to be_kind_of(Integer)
-          expect (ud.cdf(100)).to eq(1)
-          expect (ud.cdf(100)).to be_kind_of(Integer)
+          expect(ud.cdf(10)).to eq(1)
+          expect(ud.cdf(10)).to be_instance_of(Fixnum).or be_instance_of(Bignum)
+          expect(ud.cdf(100)).to eq(1)
+          expect(ud.cdf(100)).to be_kind_of(Fixnum).or be_instance_of(Bignum)
         end
 
         it 'returns integer 0 for arguments <= its support' do
-          expect (ud.cdf(0)).to eq(0)
-          expect (ud.cdf(0)).to be_kind_of(Integer)
-          expect (ud.cdf(-100)).to eq(0)
-          expect (ud.cdf(-100)).to be_kind_of(Integer)
+          expect(ud.cdf(0)).to eq(0)
+          expect(ud.cdf(0)).to be_instance_of(Fixnum).or be_instance_of(Bignum)
+          expect(ud.cdf(-100)).to eq(0)
+          expect(ud.cdf(-100)).to be_instance_of(Fixnum).or be_instance_of(Bignum)
         end
 
       end
 
-      describe '#somemethod' do
+      describe '#pdf' do
 
-        it 'exists' do
-          expect { Simpack::Distribution::Uniform.new(0,5).somemethod }.not_to raise_error
+        subject(:ud) { Simpack::Distribution::Uniform.new(300.1, 400) }
+
+        it 'takes an integer or a float argument' do
+          expect(ud.pdf(251)).to eq(ud.pdf(251.00))
+        end
+
+        it 'returns a float when argument is inside its support' do
+          expect(ud.pdf(399)).to be_instance_of(Float)
+        end
+
+        it 'raises an error with an improper argument' do
+          arguments = [Object.new, 'Three Hundred Twenty Six', :totallywontwork]
+          arguments.each do |arg|
+            expect { ud.pdf(arg) }.to raise_error
+          end
+        end
+
+        it 'returns integer 0 for arguments > its support' do
+          expect(ud.pdf(300)).to eq(0)
+          expect(ud.pdf(300)).to be_instance_of(Fixnum)
+        end
+
+        it 'returns integer 0 for arguments < its support' do
+          expect(ud.pdf(50000)).to eq(0)
+          expect(ud.pdf(50000)).to be_instance_of(Fixnum)
         end
 
       end
