@@ -195,6 +195,83 @@ describe Simpack do
 
       end
 
+      describe '#mean' do
+
+        it 'returns the proper value for the mean' do
+          100.times do
+            range = rand() * 10000
+            a, b = [rand() * range, rand() * range].sort
+            expect(Simpack::Distribution::Uniform.new(a, b).mean).to
+              be_within(0.00001).of(0.5 * (a + b))
+          end
+        end
+
+      end
+
+      describe '#median' do
+
+        it 'returns the proper value for the median' do
+          100.times do
+            range = rand() * 10000
+            a, b = [rand() * range, rand() * range].sort
+            expect(Simpack::Distribution::Uniform.new(a, b).median).to
+              be_within(0.00001).of(0.5 * (a + b))
+          end
+        end
+
+      end
+
+      describe '#variance' do
+
+        it 'returns the proper value for the variance' do
+          100.times do
+            range = rand() * 10000
+            a, b = [rand() * range, rand() * range].sort
+            expect(Simpack::Distribution::Uniform.new(a, b).variance).to
+              be_within(0.00001).of((1.0 / 12) * (a + b) ** 2)
+          end
+        end
+
+      end
+
+      describe '#skewness' do
+
+        it 'returns 0' do
+          100.times do
+            range = rand() * 10000
+            a, b = [rand() * range, rand() * range].sort
+            expect(Simpack::Distribution::Uniform.new(a, b).skewness).to eq(0)
+          end
+        end
+
+      end
+
+      describe '#excess_kurtosis' do
+
+        it 'returns -6/5 (-1.2)' do
+          100.times do
+            range = rand() * 10000
+            a, b = [rand() * range, rand() * range].sort
+            expect(Simpack::Distribution::Uniform.new(a, b).excess_kurtosis).to
+              eq(-6.0 / 5)
+          end
+        end
+
+      end
+
+      describe '#entropy' do
+
+        it 'returns the proper value for the entropy' do
+          100.times do
+            range = rand() * 10000
+            a, b = [rand() * range, rand() * range].sort
+            expect(Simpack::Distribution::Uniform.new(a, b).entropy).to
+              be_within(0.00001).of(log(b - a))
+          end
+        end
+
+      end
+
     end
 
   end
