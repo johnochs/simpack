@@ -201,8 +201,7 @@ describe Simpack do
           100.times do
             range = rand() * 10000
             a, b = [rand() * range, rand() * range].sort
-            expect(Simpack::Distribution::Uniform.new(a, b).mean).to
-              be_within(0.00001).of(0.5 * (a + b))
+            expect(Simpack::Distribution::Uniform.new(a, b).mean).to be_within(0.00001).of(0.5 * (a + b))
           end
         end
 
@@ -214,8 +213,7 @@ describe Simpack do
           100.times do
             range = rand() * 10000
             a, b = [rand() * range, rand() * range].sort
-            expect(Simpack::Distribution::Uniform.new(a, b).median).to
-              be_within(0.00001).of(0.5 * (a + b))
+            expect(Simpack::Distribution::Uniform.new(a, b).median).to be_within(0.00001).of(0.5 * (a + b))
           end
         end
 
@@ -227,8 +225,7 @@ describe Simpack do
           100.times do
             range = rand() * 10000
             a, b = [rand() * range, rand() * range].sort
-            expect(Simpack::Distribution::Uniform.new(a, b).variance).to
-              be_within(0.00001).of((1.0 / 12) * (a + b) ** 2)
+            expect(Simpack::Distribution::Uniform.new(a, b).variance).to be_within(0.00001).of((1.0 / 12) * (b - a) ** 2)
           end
         end
 
@@ -252,8 +249,7 @@ describe Simpack do
           100.times do
             range = rand() * 10000
             a, b = [rand() * range, rand() * range].sort
-            expect(Simpack::Distribution::Uniform.new(a, b).excess_kurtosis).to
-              eq(-6.0 / 5)
+            expect(Simpack::Distribution::Uniform.new(a, b).excess_kurtosis).to eq(-6.0 / 5)
           end
         end
 
@@ -265,8 +261,7 @@ describe Simpack do
           100.times do
             range = rand() * 10000
             a, b = [rand() * range, rand() * range].sort
-            expect(Simpack::Distribution::Uniform.new(a, b).entropy).to
-              be_within(0.00001).of(log(b - a))
+            expect(Simpack::Distribution::Uniform.new(a, b).entropy).to be_within(0.00001).of(Math.log(b - a))
           end
         end
 
