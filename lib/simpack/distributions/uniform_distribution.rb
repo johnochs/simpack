@@ -24,6 +24,20 @@ module Simpack
         1 / (@b - @a)
       end
 
+      def mean; 0.5 * (@a + @b); end
+
+      def median; 0.5 * (@a + @b); end
+
+      def variance
+        (1.0 / 12) * (@b - @a) ** 2
+      end
+
+      def skewness; 0; end
+
+      def excess_kurtosis; -(6.0 / 5); end
+
+      def entropy; Math.log(@b - @a); end
+
       private
 
       def check_validity(a, b)
