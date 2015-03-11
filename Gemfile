@@ -6,4 +6,5 @@ group :test do
   gem 'rspec', '~> 3.2.0'
   gem 'codeclimate-test-reporter'
   gem 'rake', '~> 10.4.2'
+  gem 'byebug', '~> 3.5.1'
 end
