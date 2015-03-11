@@ -2,36 +2,26 @@ module Simpack
   module Distribution
     class Exponential
 
-      def initialize(theta)
-        check_validity(theta)
-        @theta = theta
+      def initialize(lambda)
+        check_validity(lambda)
+        @lambda = lambda.to_f
       end
 
-      def pdf(x)
-        theta * survival(x)
-      end
+      def pdf(x); lambda * survival(x); end
 
-      def cdf(x)
-        1 - survival(x)
-      end
+      def cdf(x); 1 - survival(x); end
 
-      def mean
-        1 / theta
-      end
+      def mean; 1.0 / lambda; end
 
-      def mode
-        0
-      end
+      def mode; 0; end
 
-      def survival(x)
-        1 / (Math::E ** (theta * x))
-      end
+      def survival(x); 1 / (Math::E ** (lambda * x)); end
 
       private
-      attr_reader :theta
+      attr_reader :lambda
 
-      def check_validity(theta)
-        raise 'Invalid parameter.' unless theta > 0
+      def check_validity(lambda)
+        raise 'Invalid parameter' unless lambda > 0
       end
 
     end
