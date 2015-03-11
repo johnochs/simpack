@@ -5,3 +5,4 @@ ENV['CODECLIMATE_REPO_TOKEN'] = '434d4cfa388ad2146c71bca82bf4cb9693336f208412c73
 CodeClimate::TestReporter.start
 
 require 'simpack'
+require 'byebug'
