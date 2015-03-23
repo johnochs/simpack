@@ -60,7 +60,12 @@ describe Simpack do
 
       it 'when called with an integer argument, returns that number of items' do
         rand_num = (100 * rand()).floor
-        expect(lcg.uniform(rand_num).size).to eq(rand_num)
+        sample = lcg.uniform(rand_num)
+        unless rand_num == 1
+          expect(sample.size).to eq(rand_num)
+        else
+          expect(sample).to be_instance_of(Float)
+        end
       end
 
     end

@@ -191,7 +191,12 @@ describe 'Simpack::Distribution' do
         it 'returns the correct number of random numbers' do
           1000.times do
             rand_num = (rand() * 1000).floor
-            expect(ud.sample(rand_num).size).to eq(rand_num)
+            sample = ud.sample(rand_num)
+            unless rand_num == 1
+              expect(sample.size).to eq(rand_num)
+            else
+              expect(sample).to be_instance_of(Float)
+            end
           end
         end
 
